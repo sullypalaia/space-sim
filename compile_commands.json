@@ -1,0 +1,78 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-I",
+      "include",
+      "-I",
+      "/opt/assimp/include",
+      "-I",
+      "/opt/assimp/build/include",
+      "-o",
+      "bin/space",
+      "src/VBO.cpp"
+    ],
+    "directory": "/home/sullypalaia/Projects/space",
+    "file": "/home/sullypalaia/Projects/space/src/VBO.cpp",
+    "output": "/home/sullypalaia/Projects/space/bin/space"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-I",
+      "include",
+      "-I",
+      "/opt/assimp/include",
+      "-I",
+      "/opt/assimp/build/include",
+      "-o",
+      "bin/space",
+      "src/WindowManager.cpp"
+    ],
+    "directory": "/home/sullypalaia/Projects/space",
+    "file": "/home/sullypalaia/Projects/space/src/WindowManager.cpp",
+    "output": "/home/sullypalaia/Projects/space/bin/space"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-I",
+      "include",
+      "-I",
+      "/opt/assimp/include",
+      "-I",
+      "/opt/assimp/build/include",
+      "-o",
+      "bin/space",
+      "src/main.cpp"
+    ],
+    "directory": "/home/sullypalaia/Projects/space",
+    "file": "/home/sullypalaia/Projects/space/src/main.cpp",
+    "output": "/home/sullypalaia/Projects/space/bin/space"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-I",
+      "include",
+      "-I",
+      "/opt/assimp/include",
+      "-I",
+      "/opt/assimp/build/include",
+      "-o",
+      "bin/space",
+      "src/glad.c"
+    ],
+    "directory": "/home/sullypalaia/Projects/space",
+    "file": "/home/sullypalaia/Projects/space/src/glad.c",
+    "output": "/home/sullypalaia/Projects/space/bin/space"
+  }
+]

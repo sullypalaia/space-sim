@@ -1,0 +1,9 @@
+-add skybox
+-add star particles
+-add particle trail to sun
+-make sun larger and spin around y axis
+-add model loader for stuff
+-generate mipmaps for textures of imported models
+-view frustum culling for complex models
+-post processing effects
+-antialiasing
