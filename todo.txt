@@ -1,6 +1,7 @@
 -add star particles
 -add particle trail to sun
 -fix texture manager code
+-add particle trail to star
 -add model loader for stuff
 -generate mipmaps for textures of imported models
 -view frustum culling for complex models
