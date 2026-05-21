@@ -1,5 +1,4 @@
 -add star particles
--add particle trail to sun
 -fix texture manager code
 -add particle trail to star
 -add model loader for stuff
