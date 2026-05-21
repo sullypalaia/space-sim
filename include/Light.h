@@ -6,7 +6,7 @@
 
 class Light {
 public:
-  Light(int columns, int rows, float radius);
+  Light(int columns, int rows, float radius, float frequency, float amplitude);
 
   int init();
 
@@ -24,4 +24,6 @@ private:
 
   int m_num_columns, m_num_rows;
   float m_radius;
+  float m_frequency;
+  float m_amplitude;
 };

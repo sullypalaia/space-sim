@@ -6,6 +6,7 @@
 
 #include "Camera.h"
 #include "Light.h"
+#include "Skybox.h"
 #include "WindowManager.h"
 
 void debug_callback(GLenum source, GLenum type, GLuint id, GLenum severity,
@@ -41,14 +42,22 @@ int main() {
   glEnable(GL_DEPTH_TEST);
 
   // camera
-  Camera camera(45.0, window_manager.get_ar(), 0.01, 100.0, 0.05, 5.0);
+  Camera camera(45.0, window_manager.get_ar(), 0.01, 1000.0, 0.1, 20.0);
 
   window_manager.add_camera(&camera);
 
   // scene
-  Light light(50, 25, 1);
+  Light light(40, 20, 20, 10.0, 20.0);
   if (!light.init()) {
     std::cerr << "failed to create light\n";
+    return -1;
+  }
+
+  // skybox
+  Skybox skybox({"skybox/px.png", "skybox/nx.png", "skybox/py.png",
+                 "skybox/ny.png", "skybox/pz.png", "skybox/nz.png"});
+  if (!skybox.init()) {
+    std::cerr << "failed to create skybox\n";
     return -1;
   }
 
@@ -63,9 +72,9 @@ int main() {
     camera.update();
     window_manager.handle_input();
 
-    // draw
-    glDisable(GL_CULL_FACE);
     light.draw();
+
+    skybox.draw();
 
     glfwSwapBuffers(window_manager.get_window());
     glfwPollEvents();

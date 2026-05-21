@@ -4,19 +4,16 @@
 
 class TextureManager {
 public:
-  TextureManager(std::vector<const char *> &filenames, bool flip,
-                 unsigned int target);
+  TextureManager(bool flip, unsigned int target, size_t num_textures);
 
-  int init();
+  int init(std::vector<const char *> &filenames);
+
+  void bind_texture(size_t index) const;
 
   void destroy() const;
 
-  void bind_texture() const;
-
 private:
   std::vector<unsigned int> m_ids;
-
-  std::vector<const char *> &m_filenames;
 
   bool m_flip;
 

@@ -1,21 +1,20 @@
 #include <cmath>
-#include <iostream>
 #include <vector>
 
 #define PI 3.14159265f
 
 #include "glad/glad.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
 #include "GLFW/glfw3.h"
 
 #include "Light.h"
 
-Light::Light(int num_columns, int num_rows, float radius)
+Light::Light(int num_columns, int num_rows, float radius, float frequency,
+             float amplitude)
     : m_program("light.vert", "light.frag"), m_num_columns(num_columns),
-      m_num_rows(num_rows), m_radius(radius) {}
+      m_num_rows(num_rows), m_radius(radius), m_frequency(frequency),
+      m_amplitude(amplitude) {}
 
 int Light::init() {
   std::vector<GLfloat> vertices(m_num_columns * m_num_rows * 3);
@@ -88,8 +87,11 @@ void Light::draw() {
   glm::mat4 model_mat(1.0f);
   model_mat = glm::translate(
       model_mat,
-      glm::vec3(std::cos(glm::radians(glfwGetTime() * 20.0f)) * 2.0f, 0.0f,
-                std::sin(glm::radians(glfwGetTime() * 20.0f)) * 2.0f));
+      glm::vec3(
+          std::cos(glm::radians(glfwGetTime() * m_frequency)) * m_amplitude,
+          std::sin(glm::radians(glfwGetTime() * m_frequency / 10.0f) *
+                   m_amplitude),
+          std::sin(glm::radians(glfwGetTime() * m_frequency)) * m_amplitude));
   m_program.set_uniform_matrix(0, 1, GL_FALSE, glm::value_ptr(model_mat));
 
   glDrawElements(GL_TRIANGLES, m_num_indices, GL_UNSIGNED_INT, 0);
