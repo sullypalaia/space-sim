@@ -65,8 +65,6 @@ void Skybox::draw() {
   m_program.use();
   m_tex_manager.bind_texture(0);
 
-  glEnable(GL_DEPTH_TEST);
-
   glDepthFunc(GL_LEQUAL);
   glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
   glDepthFunc(GL_LESS);

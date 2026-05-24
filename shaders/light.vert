@@ -10,5 +10,5 @@ layout (std140, binding = 0) uniform camera_info {
 layout (location = 0) uniform mat4 model;
 
 void main() {
-  gl_Position = proj * view * model * vec4(pos_in, 1.0);
+  gl_Position = proj * view * model * vec4(pos_in.x + 100.0, pos_in.y + 50.0, pos_in.z + 100.0, 1.0);
 }

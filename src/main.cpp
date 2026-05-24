@@ -5,9 +5,11 @@
 #include "GLFW/glfw3.h"
 
 #include "Camera.h"
+#include "WindowManager.h"
+
 #include "Light.h"
 #include "Skybox.h"
-#include "WindowManager.h"
+#include "Stars.h"
 
 void debug_callback(GLenum source, GLenum type, GLuint id, GLenum severity,
                     GLsizei length, const GLchar *message,
@@ -61,6 +63,12 @@ int main() {
     return -1;
   }
 
+  Stars stars(window_manager, 100, 1, 2, -0.1, 0.1);
+  if (!stars.init()) {
+    std::cerr << "failed to create stars\n";
+    return -1;
+  }
+
   while (!glfwWindowShouldClose(window_manager.get_window())) {
     // black background
     constexpr GLfloat clear_color[4]{0.0f, 0.0f, 0.0f, 1.0f};
@@ -72,7 +80,11 @@ int main() {
     camera.update();
     window_manager.handle_input();
 
+    glEnable(GL_DEPTH_TEST);
+
     light.draw();
+
+    stars.draw();
 
     skybox.draw();
 
@@ -82,6 +94,8 @@ int main() {
 
   // clean
   light.destroy();
+  skybox.destroy();
+  stars.destroy();
   window_manager.destroy();
   glfwTerminate();
 

@@ -14,6 +14,9 @@ public:
                      unsigned char normalized, unsigned int relative_offset,
                      unsigned int binding_index) const;
 
+  void add_attribute_divisor(unsigned int binding_index,
+                             unsigned int divisor) const;
+
   void bind();
 
   void destroy() const;

@@ -22,6 +22,10 @@ void VAO::add_attribute(GLuint index, GLint size, GLenum type,
   glVertexArrayAttribBinding(m_id, index, binding_index);
 }
 
+void VAO::add_attribute_divisor(GLuint binding_index, GLuint divisor) const {
+  glVertexArrayBindingDivisor(m_id, binding_index, divisor);
+}
+
 void VAO::bind() { glBindVertexArray(m_id); }
 
 void VAO::destroy() const { glDeleteVertexArrays(1, &m_id); }

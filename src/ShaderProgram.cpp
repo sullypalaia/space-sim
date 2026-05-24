@@ -108,6 +108,10 @@ void ShaderProgram::use() const { glUseProgram(m_id); }
 
 void ShaderProgram::relink() const { glLinkProgram(m_id); }
 
+void ShaderProgram::set_uniform1f(GLint location, GLfloat val) const {
+  glUniform1f(location, val);
+}
+
 void ShaderProgram::set_uniform_matrix(GLint location, GLsizei count,
                                        GLboolean transpose,
                                        const GLfloat *value) const {
@@ -117,6 +121,11 @@ void ShaderProgram::set_uniform_matrix(GLint location, GLsizei count,
 void ShaderProgram::set_uniform_block_binding(GLuint block_index,
                                               GLuint block_binding) const {
   glUniformBlockBinding(m_id, block_index, block_binding);
+}
+
+void ShaderProgram::set_tf_varyings(int count, const char *const *varyings,
+                                    unsigned int buffer_mode) {
+  glTransformFeedbackVaryings(m_id, count, varyings, buffer_mode);
 }
 
 void ShaderProgram::destroy() const { glDeleteProgram(m_id); }

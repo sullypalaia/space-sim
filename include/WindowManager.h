@@ -22,7 +22,7 @@ public:
   void destroy() const;
 
   float m_last_time = 0.0;
-  float m_dt;
+  float m_dt = 0.0;
 
 private:
   GLFWwindow *m_window = nullptr;

@@ -1,7 +1,8 @@
--add star particles
--fix texture manager code
--add particle trail to star
+-add variable sizes to stars
+-keep angles in ranges
+-add particle trail to big star
 -add model loader for stuff
+-fix skybox
 -generate mipmaps for textures of imported models
 -view frustum culling for complex models
 -post processing effects
