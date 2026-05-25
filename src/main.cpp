@@ -7,7 +7,7 @@
 #include "Camera.h"
 #include "WindowManager.h"
 
-#include "Light.h"
+#include "Planets.h"
 #include "Skybox.h"
 #include "Stars.h"
 
@@ -44,14 +44,14 @@ int main() {
   glEnable(GL_DEPTH_TEST);
 
   // camera
-  Camera camera(45.0, window_manager.get_ar(), 0.01, 1000.0, 0.1, 20.0);
+  Camera camera(45.0, window_manager.get_ar(), 0.01, 1000.0, 0.1, 10.0);
 
   window_manager.add_camera(&camera);
 
   // scene
-  Light light(40, 20, 20, 10.0, 20.0);
-  if (!light.init()) {
-    std::cerr << "failed to create light\n";
+  Planets planets(100, 50, 25, 10.0, 20.0);
+  if (!planets.init()) {
+    std::cerr << "failed to create planet\n";
     return -1;
   }
 
@@ -63,7 +63,7 @@ int main() {
     return -1;
   }
 
-  Stars stars(window_manager, 100, 1, 2, -0.1, 0.1);
+  Stars stars(window_manager, 1000, 1.0, 10.0, -0.01, 0.01);
   if (!stars.init()) {
     std::cerr << "failed to create stars\n";
     return -1;
@@ -82,7 +82,7 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
 
-    light.draw();
+    planets.draw();
 
     stars.draw();
 
@@ -93,7 +93,7 @@ int main() {
   }
 
   // clean
-  light.destroy();
+  planets.destroy();
   skybox.destroy();
   stars.destroy();
   window_manager.destroy();

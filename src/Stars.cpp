@@ -8,8 +8,8 @@
 
 #define PI 3.14159265
 
-Stars::Stars(const WindowManager &window_manager, int count, int min_size,
-             int max_size, GLfloat min_vel, GLfloat max_vel)
+Stars::Stars(const WindowManager &window_manager, int count, GLfloat min_size,
+             GLfloat max_size, GLfloat min_vel, GLfloat max_vel)
     : m_count(count), m_sim_program("sim_stars.vert", ""),
       m_render_program("stars.vert", "stars.frag"), m_min_size(min_size),
       m_max_size(max_size), m_min_vel(min_vel), m_max_vel(max_vel),
@@ -20,7 +20,7 @@ int Stars::init() {
   std::mt19937 mt(rd());
   std::uniform_real_distribution<float> dist_theta(0, 2 * PI);
   std::uniform_real_distribution<float> dist_phi(-1.0 * (PI / 2.0), PI / 2.0);
-  std::uniform_int_distribution dist_size(m_min_size, m_max_size);
+  std::uniform_real_distribution<float> dist_size(m_min_size, m_max_size);
   std::uniform_real_distribution<float> dist_vel(m_min_vel, m_max_vel);
 
   std::vector<GLfloat> angles;
@@ -29,7 +29,7 @@ int Stars::init() {
   std::vector<GLfloat> vel;
   vel.reserve(m_count * 3);
 
-  std::vector<int> size;
+  std::vector<GLfloat> size;
   size.reserve(m_count);
 
   for (int i = 0; i < m_count; ++i) {
@@ -49,7 +49,7 @@ int Stars::init() {
 
   m_vbo_vel.init(vel.size() * sizeof(GLfloat), vel.data(), 0);
 
-  m_vbo_size.init(size.size() * sizeof(GLint), size.data(), 0);
+  m_vbo_size.init(size.size() * sizeof(GLfloat), size.data(), 0);
 
   glCreateTransformFeedbacks(2, m_tfs);
 
@@ -78,7 +78,7 @@ int Stars::init() {
     m_vaos_sim[i].add_attribute(1, 2, GL_FLOAT, GL_FALSE, 0, 1);
 
     m_vaos_render[i].add_attribute(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    m_vaos_render[i].add_attribute(1, 1, GL_INT, GL_FALSE, 0, 1);
+    m_vaos_render[i].add_attribute(1, 1, GL_FLOAT, GL_FALSE, 0, 1);
   }
 
   m_sim_program.set_uniform_block_binding(0, 0);
@@ -115,11 +115,13 @@ void Stars::destroy() const {
   glDeleteTransformFeedbacks(2, m_tfs);
   m_vbo_size.destroy();
   m_vbo_vel.destroy();
+
   for (int i = 0; i < 2; ++i) {
     m_vaos_sim[i].destroy();
     m_vaos_render[i].destroy();
     m_vbos_angles[i].destroy();
   }
+
   m_sim_program.destroy();
   m_render_program.destroy();
 }

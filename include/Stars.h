@@ -7,8 +7,8 @@
 
 class Stars {
 public:
-  Stars(const WindowManager &window_manager, int count, int min_size,
-        int max_size, float min_vel, float max_vel);
+  Stars(const WindowManager &window_manager, int count, float min_size,
+        float max_size, float min_vel, float max_vel);
 
   int init();
 
@@ -28,8 +28,8 @@ private:
 
   int m_count;
 
-  int m_min_size;
-  int m_max_size;
+  float m_min_size;
+  float m_max_size;
 
   float m_min_vel;
   float m_max_vel;
