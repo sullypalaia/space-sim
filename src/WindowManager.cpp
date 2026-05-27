@@ -55,15 +55,11 @@ void WindowManager::handle_input() {
 
   if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS) {
     m_camera->m_camera_pos +=
-        glm::normalize(glm::vec3(m_camera->m_camera_front.x, 0.0f,
-                                 m_camera->m_camera_front.z)) *
-        m_camera->m_speed * m_dt;
+        m_camera->m_camera_front * m_camera->m_speed * m_dt;
   }
   if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS) {
     m_camera->m_camera_pos -=
-        glm::normalize(glm::vec3(m_camera->m_camera_front.x, 0.0f,
-                                 m_camera->m_camera_front.z)) *
-        m_camera->m_speed * m_dt;
+        m_camera->m_camera_front * m_camera->m_speed * m_dt;
   }
   if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS) {
     m_camera->m_camera_pos +=

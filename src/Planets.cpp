@@ -62,7 +62,7 @@ int Planets::init() {
   std::random_device rd;
   std::mt19937 mt(rd());
 
-  std::uniform_real_distribution<float> dist_offsets(-800.0, 800.0);
+  std::uniform_real_distribution<float> dist_offsets(-5000.0, 5000.0);
   std::uniform_real_distribution<float> dist_radii(m_min_radius, m_max_radius);
   std::uniform_real_distribution<float> dist_colors(0.0, 1.0);
 
@@ -103,8 +103,6 @@ int Planets::init() {
 
   if (!m_program.init())
     return 0;
-
-  m_program.set_uniform_block_binding(0, 0);
 
   return 1;
 }

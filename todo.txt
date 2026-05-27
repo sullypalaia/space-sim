@@ -1,5 +1,4 @@
 -keep angles in ranges
--add model loader for stuff - maybe third person spaceship thing
 -fix skybox
 -generate mipmaps for textures of imported models
 -view frustum culling for complex models

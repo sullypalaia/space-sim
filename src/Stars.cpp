@@ -81,8 +81,6 @@ int Stars::init() {
     m_vaos_render[i].add_attribute(1, 1, GL_FLOAT, GL_FALSE, 0, 1);
   }
 
-  m_sim_program.set_uniform_block_binding(0, 0);
-
   glEnable(GL_PROGRAM_POINT_SIZE);
 
   return 1;

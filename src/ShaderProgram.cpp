@@ -118,11 +118,6 @@ void ShaderProgram::set_uniform_matrix(GLint location, GLsizei count,
   glUniformMatrix4fv(location, count, transpose, value);
 }
 
-void ShaderProgram::set_uniform_block_binding(GLuint block_index,
-                                              GLuint block_binding) const {
-  glUniformBlockBinding(m_id, block_index, block_binding);
-}
-
 void ShaderProgram::set_tf_varyings(int count, const char *const *varyings,
                                     unsigned int buffer_mode) {
   glTransformFeedbackVaryings(m_id, count, varyings, buffer_mode);

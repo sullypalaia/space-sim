@@ -3,8 +3,7 @@
 #include "Skybox.h"
 
 Skybox::Skybox(const std::array<const char *, 6> &filenames)
-    : m_program("skybox.vert", "skybox.frag"),
-      m_tex_manager(false, GL_TEXTURE_CUBE_MAP, 6),
+    : m_program("skybox.vert", "skybox.frag"), m_tex_manager(false),
       m_filenames(filenames.begin(), filenames.end()) {}
 
 int Skybox::init() {
@@ -50,9 +49,7 @@ int Skybox::init() {
   // add position as vertex attribute
   m_vao.add_attribute(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-  m_program.set_uniform_block_binding(0, 0);
-
-  if (!m_tex_manager.init(m_filenames))
+  if (!m_tex_manager.init_cube_map(m_filenames))
     return 0;
 
   return 1;
@@ -63,7 +60,7 @@ int Skybox::init() {
 void Skybox::draw() {
   m_vao.bind();
   m_program.use();
-  m_tex_manager.bind_texture(0);
+  m_tex_manager.bind_texture_cube_map();
 
   glDepthFunc(GL_LEQUAL);
   glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);

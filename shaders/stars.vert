@@ -8,7 +8,7 @@ layout (std140, binding = 0) uniform camera_info {
   mat4 proj;
 };
 
-float dist = 800.0;
+float dist = 1000.0;
 
 float pos_x = cos(angles_in.x) * cos(angles_in.y) * dist;
 float pos_y = sin(angles_in.x) * dist;
